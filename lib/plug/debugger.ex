@@ -342,6 +342,10 @@ defmodule Plug.Debugger do
      }, index + 1}
   end
 
+  defp app_frames_present?(frames) do
+    Enum.count(frames, & &1.context == :app) > 0
+  end
+
   # From :elixir_compiler_*
   defp get_entry({module, :__MODULE__, 0, location}) do
     {module, inspect(module) <> " (module)", location, get_app(module), nil, nil, nil}
